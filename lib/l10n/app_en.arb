@@ -6,5 +6,17 @@
     "settings": "Settings",
     "@settings":{
         "description": "single word Settings, e.g. for headerbar"
+    },
+    "languages": "Languages",
+    "@languages":{
+        "description": "Used for language selection e.g. settings screen"
+    },
+    "licenses": "Licenses",
+    "@licenses":{
+        "description": "Used in settings and licenses screen"
+    },
+    "sourcecode": "Sourcecode",
+    "@sourcecode":{
+        "description": "Used in settings"
     }
 }

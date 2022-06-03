@@ -1,4 +1,7 @@
 {
     "algorithms": "Algorithmen",
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "languages": "Sprachen",
+    "licenses": "Lizensen",
+    "sourcecode": "Quelltext"
 }

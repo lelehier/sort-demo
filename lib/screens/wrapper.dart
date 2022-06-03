@@ -91,8 +91,8 @@ class _WrapperState extends State<Wrapper> {
 Widget indexScreen(int index) {
   switch (index) {
     case 1:
-      return const Algorithms();
-    default:
       return const SettingsScreen();
+    default:
+      return const Algorithms();
   }
 }

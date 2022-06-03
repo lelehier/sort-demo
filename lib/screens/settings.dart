@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sort_demo/widgets/screen_header.dart';
 import 'package:sort_demo/widgets/settings_item.dart';
 import 'package:url_launcher/link.dart';
@@ -17,11 +18,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
       backgroundColor: Theme.of(context).colorScheme.background,
       body: CustomScrollView(
         slivers: [
-          const ScreenHeader('Einstellungen'),
+          ScreenHeader(AppLocalizations.of(context)!.settings),
           SliverList(
             delegate: SliverChildListDelegate(
               // Aktuell reine Platzhalter
               [
+                SettingsItem(const Icon(Icons.translate_rounded),
+                    AppLocalizations.of(context)!.languages),
                 const Padding(
                   padding: EdgeInsets.all(5.0),
                   child: Divider(),
@@ -31,13 +34,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   uri: Uri.parse('https://github.com/lelehier/sort-demo'),
                   builder: (context, followLink) => SettingsItem(
                     const Icon(Icons.code_rounded),
-                    'Sourcecode',
+                    AppLocalizations.of(context)!.sourcecode,
                     onPressed: followLink,
                   ),
                 ),
                 SettingsItem(
                   const Icon(Icons.copyright_rounded),
-                  'Lizensen',
+                  AppLocalizations.of(context)!.licenses,
                   onPressed: () {
                     /*
                   - TODO: Add Licende screen
