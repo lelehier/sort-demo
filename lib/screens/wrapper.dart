@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sort_demo/l10n/l10n.dart';
 import 'package:sort_demo/screens/algorithms.dart';
+import 'package:sort_demo/screens/settings.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Wrapper extends StatefulWidget {
@@ -90,7 +91,7 @@ class _WrapperState extends State<Wrapper> {
 Widget indexScreen(int index) {
   switch (index) {
     case 1:
-      return const Algorithms();
+      return const SettingsScreen();
     default:
       return const Algorithms();
   }
