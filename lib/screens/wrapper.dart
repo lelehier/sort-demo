@@ -1,6 +1,7 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:sort_demo/screens/algorithms.dart';
+import 'package:sort_demo/screens/settings.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);
@@ -81,6 +82,6 @@ Widget indexScreen(int index) {
     case 1:
       return const Algorithms();
     default:
-      return const Algorithms();
+      return const SettingsScreen();
   }
 }
