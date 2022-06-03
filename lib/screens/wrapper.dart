@@ -36,7 +36,7 @@ class _WrapperState extends State<Wrapper> {
         }
         return MaterialApp(
           supportedLocales: L10n.all,
-          localizationsDelegates: const [
+          localizationsDelegates: [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
@@ -66,13 +66,12 @@ class _WrapperState extends State<Wrapper> {
               labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
               animationDuration: const Duration(seconds: 1, microseconds: 500),
               backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-              destinations: [
+              destinations: const [
                 NavigationDestination(
                     icon: const Icon(Icons.move_down_rounded),
-                    label: AppLocalizations.of(context)!.algorithms),
+                    label: 'Algorithmus'),
                 NavigationDestination(
-                    icon: const Icon(Icons.settings),
-                    label: AppLocalizations.of(context)!.settings),
+                    icon: const Icon(Icons.settings), label: 'Einstellungen'),
               ],
               onDestinationSelected: (int index) {
                 setState(() {
