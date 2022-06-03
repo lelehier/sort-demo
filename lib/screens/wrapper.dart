@@ -1,6 +1,9 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:sort_demo/l10n/l10n.dart';
 import 'package:sort_demo/screens/algorithms.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);
@@ -32,6 +35,13 @@ class _WrapperState extends State<Wrapper> {
               seedColor: Colors.blue, brightness: Brightness.dark);
         }
         return MaterialApp(
+          supportedLocales: L10n.all,
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
           themeMode: ThemeMode.system,
           darkTheme: ThemeData(
             useMaterial3: true,
@@ -58,9 +68,10 @@ class _WrapperState extends State<Wrapper> {
               backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
               destinations: const [
                 NavigationDestination(
-                    icon: Icon(Icons.move_down_rounded), label: 'Algorithmen'),
+                    icon: const Icon(Icons.move_down_rounded),
+                    label: 'Algorithmus'),
                 NavigationDestination(
-                    icon: Icon(Icons.settings), label: 'Einstellungen'),
+                    icon: const Icon(Icons.settings), label: 'Einstellungen'),
               ],
               onDestinationSelected: (int index) {
                 setState(() {
