@@ -1,0 +1,10 @@
+{
+    "algorithms": "Algorithms",
+    "@algorithms":{
+        "description": "single word Algorithms, for e.g. for headerbar"
+    },
+    "settings": "Settings",
+    "@settings":{
+        "description": "single word Settings, e.g. for headerbar"
+    }
+}
