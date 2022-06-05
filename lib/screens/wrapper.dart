@@ -90,7 +90,6 @@ class _WrapperState extends State<Wrapper> {
                   ),
                 );
               } else {
-                smallLayout = false;
                 return Scaffold(
                   backgroundColor: Theme.of(context).colorScheme.background,
                   body: Row(
