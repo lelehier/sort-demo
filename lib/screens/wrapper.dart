@@ -9,13 +9,16 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);
 
+  void setWrapperScreen(int index) {}
+
   @override
   State<Wrapper> createState() => _WrapperState();
 }
 
 class _WrapperState extends State<Wrapper> {
   int _currentnavigationbarindex = 0;
-  Widget _currentscreen = const Algorithms();
+  Widget _currentscreen = Algorithms();
+  bool smallLayout = true;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -53,34 +56,71 @@ class _WrapperState extends State<Wrapper> {
             colorScheme: lightColorScheme,
           ),
           debugShowCheckedModeBanner: false,
-          home: Scaffold(
-            body: AnimatedSwitcher(
-              switchInCurve: Curves.easeInOutCirc,
-              duration: const Duration(
-                milliseconds: 150,
-              ),
-              child: _currentscreen,
-            ),
-            bottomNavigationBar: NavigationBar(
-              selectedIndex: _currentnavigationbarindex,
-              elevation: 0,
-              labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-              animationDuration: const Duration(seconds: 1, microseconds: 500),
-              backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-              destinations: const [
-                NavigationDestination(
-                    icon: const Icon(Icons.move_down_rounded),
-                    label: 'Algorithmus'),
-                NavigationDestination(
-                    icon: const Icon(Icons.settings), label: 'Einstellungen'),
-              ],
-              onDestinationSelected: (int index) {
-                setState(() {
-                  _currentnavigationbarindex = index;
-                  _currentscreen = indexScreen(index);
-                });
-              },
-            ),
+          home: LayoutBuilder(
+            builder: (context, constrains) {
+              if (constrains.maxWidth < 700) {
+                return Scaffold(
+                  body: pageView(_currentscreen),
+                  bottomNavigationBar:
+                      // Pürft Größe des Fensters und zeigt entsprechend die Navigationleiste unten oder links an
+                      NavigationBar(
+                    selectedIndex: _currentnavigationbarindex,
+                    elevation: 0,
+                    labelBehavior:
+                        NavigationDestinationLabelBehavior.alwaysShow,
+                    animationDuration:
+                        const Duration(seconds: 1, microseconds: 500),
+                    backgroundColor:
+                        Theme.of(context).appBarTheme.backgroundColor,
+                    destinations: const [
+                      NavigationDestination(
+                          icon: const Icon(Icons.move_down_rounded),
+                          label: 'Algorithmus'),
+                      NavigationDestination(
+                          icon: const Icon(Icons.settings),
+                          label: 'Einstellungen'),
+                    ],
+                    onDestinationSelected: (int index) {
+                      setState(() {
+                        _currentnavigationbarindex = index;
+                        _currentscreen = indexScreen(index);
+                      });
+                    },
+                  ),
+                );
+              } else {
+                smallLayout = false;
+                return Scaffold(
+                  body: Row(
+                    children: [
+                      NavigationRail(
+                        extended: true,
+                        selectedIndex: _currentnavigationbarindex,
+                        elevation: null,
+                        backgroundColor:
+                            Theme.of(context).appBarTheme.backgroundColor,
+                        destinations: const [
+                          NavigationRailDestination(
+                            icon: const Icon(Icons.move_down_rounded),
+                            label: Text('Algorithmus'),
+                          ),
+                          NavigationRailDestination(
+                              icon: const Icon(Icons.settings),
+                              label: Text('Einstellungen')),
+                        ],
+                        onDestinationSelected: (int index) {
+                          setState(() {
+                            _currentnavigationbarindex = index;
+                            _currentscreen = indexScreen(index);
+                          });
+                        },
+                      ),
+                      Expanded(child: pageView(_currentscreen))
+                    ],
+                  ),
+                );
+              }
+            },
           ),
         );
       },
@@ -95,4 +135,12 @@ Widget indexScreen(int index) {
     default:
       return const Algorithms();
   }
+}
+
+Widget pageView(Widget currentscreen) {
+  return AnimatedSwitcher(
+    switchInCurve: Curves.easeInOutCirc,
+    duration: const Duration(milliseconds: 150),
+    child: currentscreen,
+  );
 }
