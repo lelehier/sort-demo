@@ -60,6 +60,7 @@ class _WrapperState extends State<Wrapper> {
             builder: (context, constrains) {
               if (constrains.maxWidth < 700) {
                 return Scaffold(
+                  backgroundColor: Theme.of(context).colorScheme.background,
                   body: pageView(_currentscreen),
                   bottomNavigationBar:
                       // Pürft Größe des Fensters und zeigt entsprechend die Navigationleiste unten oder links an
@@ -91,6 +92,7 @@ class _WrapperState extends State<Wrapper> {
               } else {
                 smallLayout = false;
                 return Scaffold(
+                  backgroundColor: Theme.of(context).colorScheme.background,
                   body: Row(
                     children: [
                       NavigationRail(
