@@ -94,12 +94,16 @@ class _WrapperState extends State<Wrapper> {
                   body: Row(
                     children: [
                       NavigationRail(
+                        unselectedLabelTextStyle:
+                            Theme.of(context).textTheme.bodyLarge,
+                        selectedLabelTextStyle:
+                            Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
                         extended: true,
                         selectedIndex: _currentnavigationbarindex,
                         elevation: null,
-                        backgroundColor:
-                            Theme.of(context).appBarTheme.backgroundColor,
-                        destinations: const [
+                        destinations: [
                           NavigationRailDestination(
                             icon: const Icon(Icons.move_down_rounded),
                             label: Text('Algorithmus'),
