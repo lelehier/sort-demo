@@ -17,7 +17,15 @@ class Algorithms extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                StaticCard('Vergleichbasiert', SelectButton('s', 'd')),
+                StaticCard(
+                  'Vergleichbasiert',
+                  Column(
+                    children: [
+                      SelectButton('Bubblesort', 'Beschreibung hier oder so'),
+                      SelectButton('s', 'd')
+                    ],
+                  ),
+                ),
                 StaticCard('Nicht vergleichbasiert', SelectButton('s', 'u'))
               ],
             ),

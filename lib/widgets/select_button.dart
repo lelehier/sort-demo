@@ -10,6 +10,34 @@ class SelectButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: onpressed, child: Text("bakja"));
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: ElevatedButton(
+          style: ButtonStyle(
+            minimumSize: MaterialStateProperty.all(const Size(500, 20)),
+          ),
+          onPressed: onpressed,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 30, 20, 5),
+                child: Text(
+                  title,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline5
+                      ?.copyWith(fontWeight: FontWeight.w500),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 30),
+                child: Text(
+                  desciption,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ),
+            ],
+          )),
+    );
   }
 }
