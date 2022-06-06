@@ -90,35 +90,40 @@ class _WrapperState extends State<Wrapper> {
                   ),
                 );
               } else {
+                // big layout
                 return Scaffold(
                   backgroundColor: Theme.of(context).colorScheme.background,
                   body: Row(
                     children: [
-                      NavigationRail(
-                        unselectedLabelTextStyle:
-                            Theme.of(context).textTheme.bodyLarge,
-                        selectedLabelTextStyle:
-                            Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                        extended: true,
-                        selectedIndex: _currentnavigationbarindex,
-                        elevation: null,
-                        destinations: [
-                          NavigationRailDestination(
-                            icon: const Icon(Icons.move_down_rounded),
-                            label: Text('Algorithmus'),
-                          ),
-                          NavigationRailDestination(
-                              icon: const Icon(Icons.settings),
-                              label: Text('Einstellungen')),
-                        ],
-                        onDestinationSelected: (int index) {
-                          setState(() {
-                            _currentnavigationbarindex = index;
-                            _currentscreen = indexScreen(index);
-                          });
-                        },
+                      SafeArea(
+                        child: NavigationRail(
+                          unselectedLabelTextStyle:
+                              Theme.of(context).textTheme.bodyLarge,
+                          selectedLabelTextStyle: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                          extended: true,
+                          selectedIndex: _currentnavigationbarindex,
+                          elevation: null,
+                          destinations: [
+                            NavigationRailDestination(
+                              icon: const Icon(Icons.move_down_rounded),
+                              label: Text('Algorithmus'),
+                            ),
+                            NavigationRailDestination(
+                                icon: const Icon(Icons.settings),
+                                label: Text('Einstellungen')),
+                          ],
+                          onDestinationSelected: (int index) {
+                            setState(() {
+                              _currentnavigationbarindex = index;
+                              _currentscreen = indexScreen(index);
+                            });
+                          },
+                        ),
                       ),
                       Expanded(child: pageView(_currentscreen))
                     ],
