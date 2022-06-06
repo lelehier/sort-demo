@@ -23,14 +23,23 @@ class Algorithms extends StatelessWidget {
                   Wrap(
                     children: [
                       SelectButton('Bubblesort', 'Beschreibung hier oder so'),
-                      SelectButton('s', 'd')
+                      SelectButton('Insertion Sort', 'Comming soon'),
+                      SelectButton('Selection Sort', 'Comming soon'),
+                      SelectButton('Shellsort', 'Comming soon'),
+                      SelectButton('Quicksort', 'Comming soon'),
+                      SelectButton('Mergesort', 'Comming soon'),
                     ],
                   ),
                 ),
                 StaticCard(
-                  'Nicht vergleichbasiert',
-                  SelectButton('s', 'u'),
-                ),
+                    'Nicht vergleichbasiert',
+                    Wrap(
+                      children: [
+                        SelectButton('Bucket Sort', 'Comming soon'),
+                        SelectButton('Counting Sort', 'Comming soon'),
+                        SelectButton('Radix Sort', 'Comming soon'),
+                      ],
+                    )),
                 SortCard(),
               ],
             ),
