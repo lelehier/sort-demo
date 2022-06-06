@@ -14,7 +14,7 @@ class SelectButton extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: ElevatedButton(
           style: ButtonStyle(
-            minimumSize: MaterialStateProperty.all(const Size(500, 20)),
+            minimumSize: MaterialStateProperty.all(const Size(400, 20)),
           ),
           onPressed: onpressed,
           child: Column(

@@ -19,7 +19,7 @@ class Algorithms extends StatelessWidget {
               [
                 StaticCard(
                   'Vergleichbasiert',
-                  Column(
+                  Wrap(
                     children: [
                       SelectButton('Bubblesort', 'Beschreibung hier oder so'),
                       SelectButton('s', 'd')
