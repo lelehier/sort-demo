@@ -14,27 +14,29 @@ class ScreenHeader extends StatelessWidget {
           stretch: true,
           elevation: 0,
           backgroundColor:
-              Theme.of(context).colorScheme.background.withOpacity(0.6),
+              Theme.of(context).colorScheme.background.withOpacity(0.8),
           flexibleSpace: FlexibleSpaceBar(
-            titlePadding: const EdgeInsets.fromLTRB(30, 30, 30, 20),
+            titlePadding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
             title: BackdropFilter(
               filter: ImageFilter.blur(
                 // Aktiviert Blur 15 errst wenn 10 gescrollt wurde
-                sigmaX: constraints.scrollOffset > 10 ? 15 : 0,
-                sigmaY: constraints.scrollOffset > 10 ? 15 : 0,
+                sigmaX: constraints.scrollOffset > 15 ? 15 : 0,
+                sigmaY: constraints.scrollOffset > 15 ? 15 : 0,
               ),
-              child: Text(
-                text,
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),
-                textAlign: TextAlign.left,
+              child: FittedBox(
+                child: Text(
+                  text,
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onBackground,
+                      ),
+                  textAlign: TextAlign.left,
+                ),
               ),
             ),
           ),
           pinned: true,
-          expandedHeight: MediaQuery.of(context).size.height * 0.12,
+          expandedHeight: MediaQuery.of(context).size.height * 0.11,
         );
       },
     );
