@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sort_demo/widgets/screen_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sort_demo/widgets/select_button.dart';
+import 'package:sort_demo/widgets/sort_card.dart';
 import 'package:sort_demo/widgets/static_card.dart';
 
 class Algorithms extends StatelessWidget {
@@ -26,7 +27,11 @@ class Algorithms extends StatelessWidget {
                     ],
                   ),
                 ),
-                StaticCard('Nicht vergleichbasiert', SelectButton('s', 'u'))
+                StaticCard(
+                  'Nicht vergleichbasiert',
+                  SelectButton('s', 'u'),
+                ),
+                SortCard(),
               ],
             ),
           ),

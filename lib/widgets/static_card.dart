@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
 
 class StaticCard extends StatelessWidget {
   StaticCard(this.title, this.child, {super.key});
