@@ -1,6 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sort_demo/algorithms/a_element.dart';
+import 'package:sort_demo/algorithms/bubble_sort.dart';
+import 'package:sort_demo/providers/graph_provider.dart';
 
 class SortCard extends StatefulWidget {
   const SortCard({super.key});
@@ -10,13 +14,8 @@ class SortCard extends StatefulWidget {
 }
 
 class _SortCardState extends State<SortCard> {
-  List<double> graph = [];
-
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i <= 30; i++) {
-      graph.add(Random().nextDouble() * 150);
-    }
     return Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
@@ -44,8 +43,11 @@ class _SortCardState extends State<SortCard> {
                   child: ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
-                    itemCount: graph.length,
-                    itemBuilder: (context, index) => (bar(graph[index])),
+                    itemCount: context.watch<Graph>().data.length,
+                    itemBuilder: (context, index) => (bar(
+                        context.watch<Graph>().data[index].value.toDouble(),
+                        context.watch<Graph>().data[index].selected,
+                        context.watch<Graph>().data[index].finished)),
                   ),
                 ),
                 Padding(
@@ -55,11 +57,27 @@ class _SortCardState extends State<SortCard> {
                     Text('Operatioen:')
                   ]),
                 ),
+                ElevatedButton(
+                    onPressed: () => setState(() {
+                          BubbleSort().sort(context,
+                              Provider.of<Graph>(context, listen: false).data,
+                              step_duration: Duration(milliseconds: 650));
+                        }),
+                    child: Text('Sort')),
+                ElevatedButton(
+                    onPressed: () => setState(() {
+                          List<Aelement> temp = [];
+                          for (int i = 0; i <= 20; i++) {
+                            temp.add(Aelement(Random().nextInt(150)));
+                          }
+                          context.read<Graph>().update(temp);
+                        }),
+                    child: Text('Add'))
               ],
             )));
   }
 
-  Widget bar(double value) {
+  Widget bar(double value, bool selected, bool finished) {
     return Column(children: [
       Expanded(
         child: Container(),
@@ -68,12 +86,16 @@ class _SortCardState extends State<SortCard> {
         padding: EdgeInsets.symmetric(horizontal: 1),
         child: AnimatedContainer(
           curve: Curves.easeInOutCubic,
-          duration: Duration(milliseconds: 500),
+          duration: Duration(milliseconds: 200),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(50),
               ),
-              color: Theme.of(context).colorScheme.tertiary),
+              color: (!selected && !finished)
+                  ? Theme.of(context).colorScheme.primary
+                  : (finished)
+                      ? Colors.greenAccent
+                      : Colors.redAccent),
           width: 10,
           height: value,
         ),

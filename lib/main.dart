@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:sort_demo/providers/graph_provider.dart';
 import 'package:sort_demo/screens/wrapper.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -12,5 +14,10 @@ void main() {
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.transparent));
   }
-  runApp(Wrapper());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => Graph()),
+    ],
+    child: Wrapper(),
+  ));
 }
