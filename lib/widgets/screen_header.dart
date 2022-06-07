@@ -2,14 +2,23 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 class ScreenHeader extends StatelessWidget {
-  const ScreenHeader(this.text, {Key? key}) : super(key: key);
+  ScreenHeader(this.text, {this.back = false, Key? key}) : super(key: key);
 
   final String text;
+  bool back;
   @override
   Widget build(BuildContext context) {
     return SliverLayoutBuilder(
       builder: (BuildContext context, constraints) {
         return SliverAppBar(
+          actions: [
+            (back == true)
+                ? IconButton(
+                    alignment: Alignment.center,
+                    onPressed: () => Navigator.pop(context),
+                    icon: Icon(Icons.close_outlined))
+                : SizedBox(),
+          ],
           automaticallyImplyLeading: false,
           stretch: true,
           elevation: 0,
