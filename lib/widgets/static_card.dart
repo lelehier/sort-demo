@@ -10,7 +10,7 @@ class StaticCard extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).hoverColor,
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
           borderRadius: BorderRadius.all(
             Radius.circular(50),
           ),
