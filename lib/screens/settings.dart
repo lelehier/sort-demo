@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sort_demo/screens/about.dart';
 import 'package:sort_demo/widgets/screen_header.dart';
 import 'package:sort_demo/widgets/settings_item.dart';
 import 'package:url_launcher/link.dart';
@@ -51,6 +52,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   */
                   },
                 ),
+                SettingsItem(Icon(Icons.info_outline_rounded), 'Über',
+                    onPressed: () => Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return AboutScreen();
+                        }))),
               ],
             ),
           ),
