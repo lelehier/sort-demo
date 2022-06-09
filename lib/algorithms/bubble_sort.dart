@@ -16,10 +16,12 @@ class BubbleSort extends Algorithms {
       for (var j = 1; j < array.length - i; j++) {
         //print("for 2 - $j");
         if (array[j].value < array[j - 1].value) {
+          context.read<Graph>().addcheck();
           context.read<Graph>().select(j);
           context.read<Graph>().select(j - 1);
           await Future.delayed(step_duration * 0.6);
           swap(array, j, j - 1);
+          context.read<Graph>().addswitch();
           //print('swap');
           context.read<Graph>().update(array);
           sorted = false;
@@ -27,6 +29,7 @@ class BubbleSort extends Algorithms {
           context.read<Graph>().deselect(j);
           context.read<Graph>().deselect(j - 1);
         } else {
+          context.read<Graph>().addcheck();
           context.read<Graph>().select(j);
           context.read<Graph>().select(j - 1);
           await Future.delayed(step_duration);
@@ -36,12 +39,14 @@ class BubbleSort extends Algorithms {
       }
       context.read<Graph>().setfinished(i);
       if (sorted == true) {
+        context.read<Graph>().addcheck();
         for (var z = 0; z < array.length; z++) {
           context.read<Graph>().setfinished(z);
         }
 
         return;
       }
+      context.read<Graph>().addcheck();
     }
   }
 }

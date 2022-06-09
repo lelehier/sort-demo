@@ -17,64 +17,80 @@ class _SortCardState extends State<SortCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).hoverColor,
-              borderRadius: BorderRadius.all(
-                Radius.circular(50),
+      padding: const EdgeInsets.all(20.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).hoverColor,
+          borderRadius: BorderRadius.all(
+            Radius.circular(50),
+          ),
+        ),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: IconButton(
+                  onPressed: () => () {},
+                  icon: Icon(Icons.info_outline_rounded),
+                  splashRadius: 10,
+                ),
               ),
             ),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: IconButton(
-                      onPressed: () => () {},
-                      icon: Icon(Icons.info_outline_rounded),
-                      splashRadius: 10,
+            SizedBox(
+              height: 150,
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: context.watch<Graph>().data.length,
+                itemBuilder: (context, index) => (bar(
+                    context.watch<Graph>().data[index].value.toDouble(),
+                    context.watch<Graph>().data[index].selected,
+                    context.watch<Graph>().data[index].finished)),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.av_timer_rounded),
+                        Text('Checks: ' +
+                            context.watch<Graph>().checks.toString()),
+                      ],
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 150,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: context.watch<Graph>().data.length,
-                    itemBuilder: (context, index) => (bar(
-                        context.watch<Graph>().data[index].value.toDouble(),
-                        context.watch<Graph>().data[index].selected,
-                        context.watch<Graph>().data[index].finished)),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(children: [
-                    Icon(Icons.av_timer_rounded),
-                    Text('Operatioen:')
+                    Row(
+                      children: [
+                        Icon(Icons.swap_horiz_rounded),
+                        Text('Swaps: ' +
+                            context.watch<Graph>().switches.toString()),
+                      ],
+                    )
                   ]),
-                ),
-                ElevatedButton(
-                    onPressed: () => setState(() {
-                          BubbleSort().sort(context,
-                              Provider.of<Graph>(context, listen: false).data,
-                              step_duration: Duration(milliseconds: 650));
-                        }),
-                    child: Text('Sort')),
-                ElevatedButton(
-                    onPressed: () => setState(() {
-                          List<Aelement> temp = [];
-                          for (int i = 0; i <= 20; i++) {
-                            temp.add(Aelement(Random().nextInt(150)));
-                          }
-                          context.read<Graph>().update(temp);
-                        }),
-                    child: Text('Add'))
-              ],
-            )));
+            ),
+            ElevatedButton(
+                onPressed: () => setState(() {
+                      BubbleSort().sort(context,
+                          Provider.of<Graph>(context, listen: false).data,
+                          step_duration: Duration(milliseconds: 650));
+                    }),
+                child: Text('Sort')),
+            ElevatedButton(
+                onPressed: () => setState(() {
+                      List<Aelement> temp = [];
+                      for (int i = 0; i <= 20; i++) {
+                        temp.add(Aelement(Random().nextInt(150)));
+                      }
+                      context.read<Graph>().update(temp);
+                    }),
+                child: Text('Reset'))
+          ],
+        ),
+      ),
+    );
   }
 
   Widget bar(double value, bool selected, bool finished) {

@@ -4,6 +4,7 @@ import 'package:sort_demo/algorithms/bubble_sort.dart';
 import 'package:sort_demo/widgets/screen_header.dart';
 import 'package:sort_demo/widgets/settings_item.dart';
 import 'package:sort_demo/widgets/sort_card.dart';
+import 'package:sort_demo/widgets/tile.dart';
 import 'package:url_launcher/link.dart';
 
 class BubbleSortScreen extends StatefulWidget {
@@ -24,6 +25,9 @@ class _BubbleSortScreenState extends State<BubbleSortScreen> {
           SliverList(
             delegate: SliverChildListDelegate([
               SortCard(),
+              Tile('Hi', [
+                FlutterLogo(),
+              ])
             ]),
           ),
         ],
