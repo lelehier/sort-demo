@@ -73,9 +73,10 @@ class _SortCardState extends State<SortCard> {
             ),
             ElevatedButton(
                 onPressed: () => setState(() {
-                      BubbleSort().sort(context,
-                          Provider.of<Graph>(context, listen: false).data,
-                          step_duration: Duration(milliseconds: 650));
+                      BubbleSort().sort(
+                        context,
+                        Provider.of<Graph>(context, listen: false).data,
+                      );
                     }),
                 child: Text('Sort')),
             ElevatedButton(
