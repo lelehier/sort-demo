@@ -20,12 +20,9 @@ class _SortCardState extends State<SortCard> {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: ConstrainedBox(
         constraints: BoxConstraints(minWidth: 300, maxWidth: 600),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).hoverColor,
-            borderRadius: BorderRadius.all(
-              Radius.circular(50),
-            ),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50.0),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
