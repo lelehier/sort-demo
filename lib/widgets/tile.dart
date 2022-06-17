@@ -9,13 +9,15 @@ class Tile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-      child: ClipRRect(
+    return Card(
+      clipBehavior: Clip.hardEdge,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.0),
+      ),
+      child: Theme(
+        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
           collapsedBackgroundColor: Theme.of(context).hoverColor,
-          backgroundColor: Theme.of(context).hoverColor,
           title: Text(title),
           leading: lead,
           childrenPadding: EdgeInsets.all(10),
