@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:sort_demo/algorithms/a_element.dart';
+import 'package:sort_demo/algorithms/bubble_sort.dart';
 import 'package:sort_demo/screens/bubblesort_screen.dart';
 import 'package:sort_demo/widgets/screen_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -26,10 +30,12 @@ class Algorithms extends StatelessWidget {
                       SelectButton(
                         'Bubblesort',
                         'Beschreibung hier oder so',
-                        onpressed: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (BuildContext context) {
-                          return BubbleSortScreen();
-                        })),
+                        onpressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (BuildContext context) {
+                            return const BubbleSortScreen();
+                          }),
+                        ),
                       ),
                       SelectButton('Insertion Sort', 'Comming soon'),
                       SelectButton('Selection Sort', 'Comming soon'),

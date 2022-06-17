@@ -7,12 +7,14 @@ class Graph with ChangeNotifier {
   int _checks = 0;
   int _speed = 500;
   double _slidervalue = 1020 - 500;
+  bool _running = false;
 
   List<Aelement> get data => _data;
   int get switches => _switches;
   int get checks => _checks;
   int get speed => _speed;
   double get slidervalue => _slidervalue;
+  bool get isrunning => _running;
 
   void select(int index) {
     _data[index].selected = true;
@@ -48,5 +50,14 @@ class Graph with ChangeNotifier {
     _speed = 1020 - value.toInt();
     _slidervalue = value.toDouble();
     notifyListeners();
+  }
+
+  void isrunnning(bool value) {
+    _running = value;
+  }
+
+  void resetCounter() {
+    _checks = 0;
+    _switches = 0;
   }
 }
