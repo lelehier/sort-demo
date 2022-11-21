@@ -13,14 +13,14 @@ import 'package:url_launcher/link.dart';
 
 import '../providers/graph_provider.dart';
 
-class BubbleSortScreen extends StatefulWidget {
-  const BubbleSortScreen({Key? key}) : super(key: key);
+class ShellSortScreen extends StatefulWidget {
+  const ShellSortScreen({Key? key}) : super(key: key);
 
   @override
-  State<BubbleSortScreen> createState() => _BubbleSortScreenState();
+  State<ShellSortScreen> createState() => _ShellSortScreenState();
 }
 
-class _BubbleSortScreenState extends State<BubbleSortScreen> {
+class _ShellSortScreenState extends State<ShellSortScreen> {
   @override
   void initState() {
     super.initState();
@@ -32,13 +32,13 @@ class _BubbleSortScreenState extends State<BubbleSortScreen> {
       backgroundColor: Theme.of(context).colorScheme.background,
       body: CustomScrollView(
         slivers: [
-          ScreenHeader('Bubblesort', back: true),
+          ScreenHeader('Shellsort', back: true),
           SliverList(
             delegate: SliverChildListDelegate([
               Wrap(
                 alignment: WrapAlignment.center,
                 children: [
-                  SortCard("bubble"),
+                  SortCard("shell"),
                   ConstrainedBox(
                     constraints:
                         const BoxConstraints(minWidth: 500, maxWidth: 1000),

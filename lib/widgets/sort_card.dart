@@ -1,14 +1,18 @@
 import 'dart:math';
 
+import 'package:sort_demo/algorithms/shellsort.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sort_demo/algorithms/a_element.dart';
 import 'package:sort_demo/algorithms/bubble_sort.dart';
 import 'package:sort_demo/providers/graph_provider.dart';
 
-class SortCard extends StatefulWidget {
-  const SortCard({super.key});
+import '../algorithms/heapsort.dart';
 
+class SortCard extends StatefulWidget {
+  SortCard(this.sort, {super.key});
+
+  String sort;
   @override
   State<SortCard> createState() => _SortCardState();
 }
@@ -75,10 +79,26 @@ class _SortCardState extends State<SortCard> {
               ElevatedButton(
                   onPressed: () {
                     context.read<Graph>().isrunnning(true);
-                    BubbleSort().sort(
-                      context,
-                      Provider.of<Graph>(context, listen: false).data,
-                    );
+                    switch (widget.sort) {
+                      case "bubble":
+                        BubbleSort().sort(
+                          context,
+                          Provider.of<Graph>(context, listen: false).data,
+                        );
+                        break;
+                      case "shell":
+                        ShellSort().sort(
+                          context,
+                          Provider.of<Graph>(context, listen: false).data,
+                        );
+                        break;
+                      case "heap":
+                        HeapSort().sort(
+                          context,
+                          Provider.of<Graph>(context, listen: false).data,
+                        );
+                        break;
+                    }
                   },
                   child: Text('Sort')),
               ElevatedButton(onPressed: reset, child: Text('Reset'))
@@ -125,9 +145,14 @@ class _SortCardState extends State<SortCard> {
     List<Aelement> temp = [];
     for (int i = 0; i <= 20; i++) {
       temp.add(Aelement(Random().nextInt(150)));
-      context.read<Graph>().resetCounter();
       context.read<Graph>().isrunnning(false);
     }
+    context.read<Graph>().resetCounter();
     context.read<Graph>().update(temp);
+  }
+
+  @override
+  initState() {
+    reset();
   }
 }
